@@ -9,4 +9,6 @@ router.post('/players', playersController.createPlayer);
 
 router.put('/players/:email', playersController.updatePlayer);
 
+router.get('/players/:email', playersController.getPlayerByEmail);
+
 module.exports = router;

@@ -22,9 +22,18 @@ class PlayersController {
   async updatePlayer(req, res) {
     try {
       const { email } = req.params;
-      const newScore = req.body.score;
-      await playersService.updatePlayer(newScore, email);
-      res.status(200).json(`Score: ${newScore} is updated`);
+      await playersService.updatePlayer(req.body, email);
+      res.status(200).json(`Player is updated`);
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+  }
+
+  async getPlayerByEmail(req, res) {
+    try {
+      const { email } = req.params;
+      const player = await playersService.getPlayerByEmail(email);
+      res.status(200).json(player);
     } catch (error) {
       res.status(500).json(error.message);
     }

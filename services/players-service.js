@@ -12,8 +12,13 @@ class PlayersService {
     return newPlayer;
   }
 
-  async updatePlayer(newScore, email) {
-    await playerModel.findOneAndUpdate({ email }, { score: newScore });
+  async updatePlayer(player, email) {
+    await playerModel.findOneAndUpdate({ email }, player);
+  }
+
+  async getPlayerByEmail(email) {
+    const player = await playerModel.findOne({ email });
+    return player;
   }
 }
 
